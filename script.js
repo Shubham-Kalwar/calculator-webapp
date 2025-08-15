@@ -1,4 +1,3 @@
-// Initialize default theme
 const body = document.body;
 const themeToggle = document.getElementById('themeToggle');
 const themeLabel = document.getElementById('themeLabel');
@@ -10,7 +9,6 @@ let expression = '';
 let history = [];
 let isResultShown = false;
 
-// Unit converter data
 const unitData = {
   length: {
     units: {
@@ -55,7 +53,6 @@ const unitInput = document.getElementById('unitInput');
 const convertBtn = document.getElementById('convertBtn');
 const conversionResult = document.getElementById('conversionResult');
 
-// Helper functions for temperature conversion
 function temperatureConvert(value, from, to) {
   if (from === to) return value;
   if (from === 'celsius') {
@@ -72,7 +69,6 @@ function temperatureConvert(value, from, to) {
   }
 }
 
-// Initialize theme from localStorage
 function loadTheme() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   body.classList.remove('light', 'dark');
@@ -82,7 +78,6 @@ function loadTheme() {
   themeToggle.setAttribute('aria-checked', themeToggle.checked);
 }
 
-// Toggle theme and save to localStorage
 themeToggle.addEventListener('change', () => {
   if (themeToggle.checked) {
     body.classList.replace('light', 'dark');
@@ -98,7 +93,6 @@ themeToggle.addEventListener('change', () => {
   playClickSound();
 });
 
-// Plays a click sound if available
 function playClickSound() {
   if (clickSound) {
     clickSound.currentTime = 0;
@@ -106,12 +100,10 @@ function playClickSound() {
   }
 }
 
-// Update the calculator display safely
 function updateDisplay(text) {
   display.value = text || '0';
 }
 
-// Add to history and update history UI
 function addToHistory(expr, result) {
   history.unshift({ expr, result });
   if (history.length > 20) history.pop();
@@ -119,7 +111,6 @@ function addToHistory(expr, result) {
   saveHistory();
 }
 
-// Render history list to UI
 function renderHistory() {
   historyList.innerHTML = '';
   history.forEach(({expr, result}, index) => {
@@ -135,12 +126,10 @@ function renderHistory() {
   });
 }
 
-// Save history to localStorage
 function saveHistory() {
   localStorage.setItem('calcHistory', JSON.stringify(history));
 }
 
-// Load history from localStorage
 function loadHistory() {
   const saved = localStorage.getItem('calcHistory');
   if (saved) {
@@ -149,7 +138,6 @@ function loadHistory() {
   }
 }
 
-// Calculator button handling
 document.querySelector('.buttons-grid').addEventListener('click', e => {
   if (!e.target.classList.contains('button')) return;
   const action = e.target.dataset.action;
@@ -174,7 +162,6 @@ document.querySelector('.buttons-grid').addEventListener('click', e => {
   }
 
   else if (action === 'sci') {
-    // Insert function name with opening parenthesis for user
     expression += value + '(';
     updateDisplay(expression);
   }
@@ -193,7 +180,6 @@ document.querySelector('.buttons-grid').addEventListener('click', e => {
 
   else if (action === 'equal') {
     try {
-      // Use mathjs to parse and evaluate the expression
       let result = math.evaluate(expression);
       if (typeof result === 'function') {
         throw new Error('Invalid result');
@@ -214,7 +200,6 @@ document.querySelector('.buttons-grid').addEventListener('click', e => {
   }
 });
 
-// Keyboard support for calculator
 window.addEventListener('keydown', e => {
   const allowedKeys = '0123456789+-*/().^';
   if (allowedKeys.includes(e.key)) {
@@ -242,7 +227,6 @@ window.addEventListener('keydown', e => {
   }
 });
 
-// Initialize unit converter selects
 function populateUnits(category) {
   unitFrom.innerHTML = '';
   unitTo.innerHTML = '';
@@ -276,14 +260,12 @@ convertBtn.addEventListener('click', () => {
   if (unitCategory.value === 'temperature') {
     result = temperatureConvert(value, fromUnit, toUnit);
   } else {
-    // Convert input to base unit
     const baseValue = value / unitData[unitCategory.value].units[fromUnit];
     result = baseValue * unitData[unitCategory.value].units[toUnit];
   }
   conversionResult.textContent = `${value} ${fromUnit} = ${result.toFixed(6)} ${toUnit}`;
 });
 
-// Accessibility: Keyboard navigation for history items
 historyList.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
     const selected = document.activeElement;
@@ -294,10 +276,10 @@ historyList.addEventListener('keydown', e => {
   }
 });
 
-// Initialization on page load
 window.onload = () => {
   loadTheme();
   loadHistory();
   populateUnits(unitCategory.value);
   updateDisplay('');
 };
+
