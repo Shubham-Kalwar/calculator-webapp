@@ -11,13 +11,11 @@
   --focus-outline: 2px solid #f39c12;
 }
 
-/* Light Theme */
 body.light {
   background: var(--bg-light);
   color: var(--text-light);
 }
 
-/* Dark Theme */
 body.dark {
   background: var(--bg-dark);
   color: var(--text-dark);
@@ -204,14 +202,12 @@ body.dark .button {
   outline: none;
 }
 
-/* Accessibility focus */
 button:focus,
 input:focus,
 select:focus {
   outline: var(--focus-outline);
 }
 
-/* Responsive */
 @media (max-width: 460px) {
   .app-container {
     margin: 12px;
@@ -231,3 +227,4 @@ select:focus {
     flex-direction: column;
   }
 }
+
