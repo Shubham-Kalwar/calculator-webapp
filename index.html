@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Advanced Responsive Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-container" role="main" aria-label="Advanced Calculator">
+    
+    <!-- Theme Switch -->
+    <div class="theme-switcher">
+      <label for="themeToggle" id="themeLabel">Light Mode</label>
+      <input type="checkbox" id="themeToggle" aria-checked="false" aria-labelledby="themeLabel"/>
+    </div>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section" aria-label="Calculator">
+      <input id="display" aria-live="polite" aria-atomic="true" role="textbox" readonly />
+      <div class="buttons-grid" role="group" aria-label="Calculator Buttons">
+        <!-- Clear, Backspace, Parenthesis -->
+        <button class="button clear" data-action="clear" aria-label="Clear all">C</button>
+        <button class="button backspace" data-action="backspace" aria-label="Backspace">⌫</button>
+        <button class="button paren" data-action="paren" data-value="(" aria-label="Left Parenthesis">(</button>
+        <button class="button paren" data-action="paren" data-value=")" aria-label="Right Parenthesis">)</button>
+
+        <!-- Numbers and Decimal -->
+        <button class="button" data-action="number" data-value="7">7</button>
+        <button class="button" data-action="number" data-value="8">8</button>
+        <button class="button" data-action="number" data-value="9">9</button>
+        <button class="button operator" data-action="operator" data-value="/" aria-label="Divide">÷</button>
+
+        <button class="button" data-action="number" data-value="4">4</button>
+        <button class="button" data-action="number" data-value="5">5</button>
+        <button class="button" data-action="number" data-value="6">6</button>
+        <button class="button operator" data-action="operator" data-value="*" aria-label="Multiply">×</button>
+
+        <button class="button" data-action="number" data-value="1">1</button>
+        <button class="button" data-action="number" data-value="2">2</button>
+        <button class="button" data-action="number" data-value="3">3</button>
+        <button class="button operator" data-action="operator" data-value="-" aria-label="Minus">−</button>
+
+        <button class="button decimal" data-action="decimal" data-value=".">.</button>
+        <button class="button" data-action="number" data-value="0">0</button>
+        <button class="button equal" data-action="equal" aria-label="Equals">=</button>
+        <button class="button operator" data-action="operator" data-value="+" aria-label="Plus">+</button>
+
+        <!-- Scientific functions -->
+        <button class="button sci-func" data-action="sci" data-value="sin" aria-label="Sine">sin</button>
+        <button class="button sci-func" data-action="sci" data-value="cos" aria-label="Cosine">cos</button>
+        <button class="button sci-func" data-action="sci" data-value="tan" aria-label="Tangent">tan</button>
+        <button class="button sci-func" data-action="sci" data-value="log" aria-label="Logarithm">log</button>
+        <button class="button sci-func" data-action="sci" data-value="sqrt" aria-label="Square root">√</button>
+        <button class="button sci-func" data-action="sci" data-value="^" aria-label="Power">^</button>
+      </div>
+    </section>
+
+    <!-- History Panel -->
+    <section class="history-section" aria-label="Calculation History">
+      <h2>History</h2>
+      <ul id="historyList" role="list" tabindex="0"></ul>
+    </section>
+
+    <!-- Unit Converter Section -->
+    <section class="converter-section" aria-label="Unit Converter">
+      <h2>Unit Converter</h2>
+      <select id="unitCategory" aria-label="Select unit category">
+        <option value="length">Length</option>
+        <option value="weight">Weight</option>
+        <option value="temperature">Temperature</option>
+      </select>
+      <div class="converter-inputs">
+        <input type="number" id="unitInput" aria-label="Input value"/>
+        <select id="unitFrom" aria-label="From unit"></select>
+        <select id="unitTo" aria-label="To unit"></select>
+        <button id="convertBtn">Convert</button>
+      </div>
+      <p id="conversionResult" aria-live="polite"></p>
+    </section>
+
+    <!-- Audio for button feedback -->
+    <audio id="clickSound" src="click.mp3" preload="auto"></audio>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjs/lib/browser/math.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
