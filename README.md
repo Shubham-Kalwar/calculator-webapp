@@ -21,10 +21,10 @@ A simple, interactive calculator built with HTML, CSS, and JavaScript. Designed 
 
 ## Project Structure
 / (root folder)
-├── index.html         # Main HTML file with UI structure
-├── styles.css         # Responsive CSS with theme styles
-├── script.js          # JavaScript logic for calculator and unit converter
-└── click.mp3          # Click sound effect file
+- index.html         # Main HTML file with UI structure
+- styles.css         # Responsive CSS with theme styles
+- script.js          # JavaScript logic for calculator and unit converter
+- click.mp3          # Click sound effect file
 
 
 ## 🛠️ Technologies Used
